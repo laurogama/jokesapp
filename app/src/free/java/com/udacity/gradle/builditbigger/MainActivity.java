@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.MobileAds;
+import com.udacity.gradle.builditbigger.backend.myApi.model.Joke;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MobileAds.initialize(this, initializationStatus -> {
+        });
     }
 
 
@@ -41,7 +46,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+        new EndpointsAsyncTask(
+                this::showJoke
+        ).execute();
+    }
+
+    private void showJoke(Joke output) {
+        if (output != null) {
+            Toast.makeText(
+                    this,
+                    output.getContent(),
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(
+                    this,
+                    getString(R.string.error_connecting),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
 
