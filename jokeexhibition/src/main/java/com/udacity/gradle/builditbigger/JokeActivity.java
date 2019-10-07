@@ -10,7 +10,7 @@ import com.android.example.builditbigger.model.Joke;
 
 public class JokeActivity extends AppCompatActivity {
 
-    private static final String EXTRA_JOKE = "extra_joke";
+    private static final String EXTRA_JOKE = "com.udacity.gradle.builditbigger.extra_joke";
 
     //private ActivityViewModel viewModel;
     @Override

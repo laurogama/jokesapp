@@ -55,6 +55,7 @@ android {
             applicationIdSuffix ".free"
             versionNameSuffix "-free"
             resValue('string', 'APP_ID', Admob_apiKey) //found on .gradle/gradle.properties
+            resValue('string', 'AD_UNIT_ID', jokesapp_banner_ad_unit_id)
         }
     }
     sourceSets {
@@ -90,4 +91,8 @@ android {
         debugImplementation 'androidx.test.espresso:espresso-core:3.2.0'
         debugImplementation 'androidx.fragment:fragment-testing:1.1.0'
     }
+}
+
+dependencies {
+    implementation project(path: ':jokeexhibition')
 }

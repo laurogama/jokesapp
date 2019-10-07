@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import com.udacity.gradle.builditbigger.backend.myApi.model.Joke;
 
 
 public class MainActivity extends AppCompatActivity {
+    static final String ACTION_EXHIBIT_JOKE = "com.udacity.gradle.builditbigger.extra_joke";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void showJoke(Joke output) {
         if (output != null) {
-            Toast.makeText(
-                    this,
-                    output.getContent(),
-                    Toast.LENGTH_SHORT).show();
+            com.android.example.builditbigger.model.Joke jokeSerializable =
+                    new com.android.example.builditbigger.model.Joke(
+                            output.getAuthor()
+                            , output.getContent());
+            startActivity(new Intent(this, JokeActivity.class).putExtra(ACTION_EXHIBIT_JOKE,
+                    jokeSerializable));
         } else {
             Toast.makeText(
                     this,
